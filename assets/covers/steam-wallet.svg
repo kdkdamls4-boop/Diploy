@@ -1,0 +1,103 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0b131e"/>
+      <stop offset="50%" stop-color="#122338"/>
+      <stop offset="100%" stop-color="#1b395d"/>
+    </linearGradient>
+    <linearGradient id="cyanGlow" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#00d2ff"/>
+      <stop offset="100%" stop-color="#3a7bd5"/>
+    </linearGradient>
+    <linearGradient id="goldGlow" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#ffd200"/>
+      <stop offset="100%" stop-color="#f7971e"/>
+    </linearGradient>
+    <radialGradient id="steamGlow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#66c0f4" stop-opacity="0.35"/>
+      <stop offset="100%" stop-color="#171a21" stop-opacity="0"/>
+    </radialGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <!-- Фон -->
+  <rect width="800" height="450" fill="url(#bg)"/>
+  
+  <!-- Световые круги на фоне -->
+  <circle cx="700" cy="100" r="250" fill="url(#steamGlow)"/>
+  <circle cx="100" cy="380" r="200" fill="#00d2ff" opacity="0.08"/>
+
+  <!-- Геометрические линии декора (сетка) -->
+  <path d="M-50,150 L850,220 M-50,280 L850,350" stroke="rgba(255,255,255,0.03)" stroke-width="2"/>
+  <circle cx="680" cy="220" r="140" stroke="rgba(102,192,244,0.15)" stroke-width="2" fill="none"/>
+  <circle cx="680" cy="220" r="190" stroke="rgba(102,192,244,0.08)" stroke-width="1.5" stroke-dasharray="8 8" fill="none"/>
+
+  <!-- Логотип Steam в правой части -->
+  <g transform="translate(680, 220) scale(0.9)" opacity="0.9" filter="url(#shadow)">
+    <!-- Внешнее кольцо -->
+    <circle cx="0" cy="0" r="100" fill="#171a21" stroke="#66c0f4" stroke-width="7"/>
+    <!-- Большая деталь шатуна -->
+    <path d="M-30,-20 L40,-50 L25,-10 L-40,15 Z" fill="#66c0f4"/>
+    <!-- Малый шарнир -->
+    <circle cx="45" cy="-35" r="24" fill="#66c0f4"/>
+    <circle cx="45" cy="-35" r="14" fill="#171a21"/>
+    <!-- Большой шарнир -->
+    <circle cx="-35" cy="20" r="40" fill="#66c0f4"/>
+    <circle cx="-35" cy="20" r="26" fill="#171a21"/>
+    <circle cx="-35" cy="20" r="14" fill="#66c0f4"/>
+  </g>
+
+  <!-- Верхний бейдж "АВТОВЫДАЧА • РФ / СНГ / КЗ" -->
+  <g transform="translate(50, 45)">
+    <rect x="0" y="0" width="310" height="34" rx="6" fill="#00d2ff" fill-opacity="0.15" stroke="#00d2ff" stroke-width="1.5"/>
+    <text x="14" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#00d2ff" letter-spacing="1">
+      ⚡ МОМЕНТАЛЬНО ПО ЛОГИНУ • РФ / СНГ
+    </text>
+  </g>
+
+  <!-- Главный заголовок -->
+  <g transform="translate(50, 135)" filter="url(#shadow)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
+      ПОПОЛНЕНИЕ
+    </text>
+    <text x="0" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" fill="url(#cyanGlow)" letter-spacing="-0.5">
+      БАЛАНСА STEAM
+    </text>
+  </g>
+
+  <!-- Подзаголовок с условиями -->
+  <g transform="translate(50, 235)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#cbe0ef">
+      Любая сумма от 100 ₽ • Низкая комиссия сервиса всего 4%
+    </text>
+    <text x="0" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500" fill="#8f98a0">
+      Официальный шлюз платежей. Без передачи пароля. Мгновенное поступление!
+    </text>
+  </g>
+
+  <!-- Теги внизу слева -->
+  <g transform="translate(50, 320)">
+    <!-- Тег 1: Комиссия -->
+    <rect x="0" y="0" width="160" height="42" rx="8" fill="#1b2838" stroke="#66c0f4" stroke-width="1.5"/>
+    <text x="20" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="15" font-weight="800" fill="#00d2ff">
+      🔥 КОМИССИЯ 4%
+    </text>
+
+    <!-- Тег 2: Без логина пароля -->
+    <rect x="175" y="0" width="165" height="42" rx="8" fill="#1b2838" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <text x="195" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#ffffff">
+      🛡️ 100% БЕЗОПАСНО
+    </text>
+
+    <!-- Тег 3: Автовыдача -->
+    <rect x="355" y="0" width="160" height="42" rx="8" fill="#1b2838" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <text x="375" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#10b981">
+      ⚡ 1-2 МИНУТЫ
+    </text>
+  </g>
+
+  <!-- Декоративная плашка снизу -->
+  <rect x="0" y="444" width="800" height="6" fill="url(#cyanGlow)"/>
+</svg>

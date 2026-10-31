@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Корзина и оформление заказа — Diploy Games</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <!-- Фоновый холст для анимированных частиц (осенние листья и огоньки) -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Верхняя промо-полоса распродажи (Autumn Sale Ribbon) -->
+  <div class="autumn-sale-topbar">
+    <span><span data-icon="pumpkin"></span> Осенняя распродажа &amp; Halloween Sale: скидки до -70% на игры и валюту! Промокод: <strong>HALLOWEEN</strong> (-25%)</span>
+  </div>
+
+  <!-- ======================================================================== -->
+  <!-- 1. ШАПКА САЙТА                                                           -->
+  <!-- ======================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="site-logo">
+        <span class="logo-badge">DIPLOY</span>
+        <span>GAMES</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+          <li><a href="profile.html" class="nav-link">Мои покупки</a></li>
+          <li><a href="admin.html" class="nav-link" title="Панель администратора (доступ защищен)">Управление <span data-icon="lock" style="font-size: 0.8em; opacity: 0.8;"></span></a></li>
+        </ul>
+      </nav>
+
+      <form class="header-search" id="header-search-form">
+        <span class="header-search-icon" data-icon="search"></span>
+        <input type="text" id="header-search-input" placeholder="Поиск игр...">
+      </form>
+
+      <div class="header-actions">
+        <a href="profile.html" class="user-balance-btn" title="Ваш баланс">
+          <span>Баланс:</span>
+          <span class="balance-value" id="header-user-balance">0 ₽</span>
+        </a>
+        <a href="cart.html" class="cart-btn" title="Корзина">
+          <span data-icon="cart"></span>
+          <span class="cart-badge" id="header-cart-badge" style="display: none;">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================== -->
+  <!-- 2. СТРАНИЦА КОРЗИНЫ                                                      -->
+  <!-- ======================================================================== -->
+  <main>
+    <div class="container">
+
+      <div class="breadcrumbs">
+        <a href="index.html">Главная</a>
+        <span>/</span>
+        <span>Корзина и оформление</span>
+      </div>
+
+      <h1 style="font-size: 1.8rem; font-weight: 800; margin-bottom: 24px;"><span data-icon="cart"></span> Ваша корзина</h1>
+
+      <!-- Если корзина пуста -->
+      <div id="cart-empty-view" style="display: none; text-align: center; padding: 70px 20px; background-color: var(--bg-card); border-radius: var(--radius-lg); border: 1px dashed var(--border-color);">
+        <div style="font-size: 3.5rem; margin-bottom: 14px;"><span data-icon="bag"></span></div>
+        <h2 style="font-size: 1.4rem; margin-bottom: 8px;">Ваша корзина пуста</h2>
+        <p style="color: var(--text-secondary); max-width: 420px; margin: 0 auto 24px;">
+          Вы пока не добавили ни одного товара. Перейдите в каталог, чтобы выбрать игры, подписки или валюту!
+        </p>
+        <a href="catalog.html" class="btn btn-primary">Перейти в каталог игр</a>
+      </div>
+
+      <!-- Если в корзине есть товары -->
+      <div class="cart-layout" id="cart-content-view">
+
+        <!-- Левая колонка: Список выбранных товаров -->
+        <section class="cart-items-container" id="cart-items-list">
+          <!-- Товары отрисовываются скриптом js/cart.js -->
+        </section>
+
+        <!-- Правая колонка: Сводка, Промокод и Оплата -->
+        <aside class="cart-summary-card">
+          <h3 class="summary-title">Сводка заказа</h3>
+
+          <!-- Ввод промокода -->
+          <div style="margin-bottom: 20px;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 6px;">
+              Промокод на скидку:
+            </label>
+            <form id="promo-code-form" class="promo-form">
+              <input type="text" id="promo-input" class="promo-input" placeholder="DIPLOY, STUDENT или STEAM">
+              <button type="submit" class="btn btn-secondary btn-sm">Применить</button>
+            </form>
+            <div id="promo-applied-info" style="display: none; font-size: 0.85rem; color: var(--accent-green); margin-top: 6px;">
+              <!-- Информация о примененном промокоде -->
+            </div>
+            <div style="font-size: 0.75rem; color: var(--text-muted); margin-top: 4px;">
+              Подсказка: попробуйте <strong>DIPLOY</strong> (-20%), <strong>STUDENT</strong> (-15%) или <strong>STEAM</strong> (-10%)
+            </div>
+          </div>
+
+          <!-- Строки расчета стоимости -->
+          <div class="summary-rows">
+            <div class="summary-row">
+              <span>Сумма товаров:</span>
+              <span id="summary-subtotal">0 ₽</span>
+            </div>
+            <div class="summary-row discount-row" id="summary-discount-row" style="display: none;">
+              <span>Скидка по промокоду:</span>
+              <span id="summary-discount">-0 ₽</span>
+            </div>
+            <div class="summary-row total-row">
+              <span>Итого к оплате:</span>
+              <span id="summary-total">0 ₽</span>
+            </div>
+          </div>
+
+          <!-- Способ оплаты -->
+          <div style="margin-bottom: 24px;">
+            <label style="font-size: 0.85rem; font-weight: 600; color: var(--text-secondary); display: block; margin-bottom: 10px;">
+              Способ оплаты:
+            </label>
+            <div class="payment-methods">
+              <label class="payment-method-item selected">
+                <input type="radio" name="payment-method" value="sbp" checked>
+                <div>
+                  <div style="font-weight: 600;"><span data-icon="flash"></span> СБП (Быстрый платеж)</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">Оплата через QR-код любого банка</div>
+                </div>
+              </label>
+              <label class="payment-method-item">
+                <input type="radio" name="payment-method" value="card">
+                <div>
+                  <div style="font-weight: 600;"><span data-icon="card"></span> Банковская карта</div>
+                  <div style="font-size: 0.75rem; color: var(--text-secondary);">МИР, Visa, MasterCard</div>
+                </div>
+              </label>
+              <label class="payment-method-item">
+                <input type="radio" name="payment-method" value="balance">
+                <div>
+                  <div style="font-weight: 600;"><span data-icon="coins"></span> Баланс аккаунта</div>
+                  <div style="font-size: 0.75rem; color: var(--accent-green);" id="cart-balance-info">
+                    Доступно: 0 ₽
+                  </div>
+                </div>
+              </label>
+            </div>
+          </div>
+
+          <!-- Кнопка оформления заказа -->
+          <button id="checkout-btn" class="btn btn-primary btn-block" style="padding: 14px; font-size: 1.05rem;">
+            Оплатить и получить ключ
+          </button>
+
+          <p style="text-align: center; font-size: 0.78rem; color: var(--text-muted); margin-top: 14px;">
+            <span data-icon="lock"></span> Лицензионный ключ активации будет сгенерирован и отображен на экране моментально после подтверждения.
+          </p>
+        </aside>
+
+      </div>
+
+    </div>
+  </main>
+
+  <!-- ======================================================================== -->
+  <!-- 3. МОДАЛЬНОЕ ОКНО УСПЕШНОЙ ПОКУПКИ И ГЕНЕРАЦИИ КЛЮЧЕЙ                    -->
+  <!-- ======================================================================== -->
+  <div class="modal-backdrop" id="success-modal">
+    <div class="modal-dialog" style="max-width: 580px;">
+      <button class="modal-close-btn" id="modal-close-btn">&times;</button>
+
+      <div style="text-align: center; margin-bottom: 20px;">
+        <div style="width: 60px; height: 60px; background-color: rgba(16, 185, 129, 0.15); border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 2rem; color: var(--accent-green);" data-icon="check">
+        </div>
+        <h2 style="font-size: 1.5rem; font-weight: 800;">Оплата успешно завершена!</h2>
+        <p style="color: var(--text-secondary); font-size: 0.9rem;" id="modal-order-number">
+          Заказ #ORD-123456
+        </p>
+      </div>
+
+      <div style="background-color: #171717; border-radius: var(--radius-md); padding: 16px; margin-bottom: 20px; border: 1px solid var(--border-color);">
+        <h4 style="font-size: 0.95rem; margin-bottom: 10px; color: var(--text-main);">
+          <span data-icon="key"></span> Ваши лицензионные ключи активации:
+        </h4>
+        <div id="modal-keys-list" style="display: flex; flex-direction: column; gap: 12px;">
+          <!-- Сюда вставляются сгенерированные ключи -->
+        </div>
+      </div>
+
+      <div style="display: flex; gap: 12px;">
+        <a href="profile.html" class="btn btn-primary" style="flex: 1;">
+          Перейти в мои покупки
+        </a>
+        <a href="catalog.html" class="btn btn-secondary" style="flex: 1;">
+          Продолжить покупки
+        </a>
+      </div>
+    </div>
+  </div>
+
+  <!-- ======================================================================== -->
+  <!-- 4. ПОДВАЛ                                                                -->
+  <!-- ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 Diploy Games. Учебный проект интернет-магазина.</div>
+        <div>Безопасная симуляция онлайн-платежей</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Скрипты -->
+  <script src="js/data.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/cart.js"></script>
+</body>
+</html>

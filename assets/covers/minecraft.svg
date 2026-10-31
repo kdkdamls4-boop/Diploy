@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" width="800" height="450">
+  <defs>
+    <linearGradient id="mcBg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#0e1710"/>
+      <stop offset="50%" stop-color="#182c1c"/>
+      <stop offset="100%" stop-color="#284a2f"/>
+    </linearGradient>
+    <linearGradient id="mcGreen" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#4caf50"/>
+      <stop offset="100%" stop-color="#8bc34a"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="6" stdDeviation="10" flood-color="#000" flood-opacity="0.6"/>
+    </filter>
+  </defs>
+
+  <rect width="800" height="450" fill="url(#mcBg)"/>
+  
+  <!-- Пиксельные блоки на фоне -->
+  <g opacity="0.12" fill="#8bc34a">
+    <rect x="520" y="40" width="80" height="80"/>
+    <rect x="600" y="40" width="80" height="80" fill="#4caf50"/>
+    <rect x="680" y="40" width="80" height="80"/>
+    <rect x="520" y="120" width="80" height="80" fill="#388e3c"/>
+    <rect x="600" y="120" width="80" height="80"/>
+    <rect x="680" y="120" width="80" height="80" fill="#4caf50"/>
+    <rect x="520" y="200" width="80" height="80"/>
+    <rect x="600" y="200" width="80" height="80" fill="#2e7d32"/>
+    <rect x="680" y="200" width="80" height="80"/>
+  </g>
+
+  <!-- Лицо Крипера справа -->
+  <g transform="translate(620, 200)" filter="url(#shadow)">
+    <!-- Голова -->
+    <rect x="-80" y="-80" width="160" height="160" rx="12" fill="#43a047" stroke="#81c784" stroke-width="4"/>
+    <!-- Глаза -->
+    <rect x="-60" y="-50" width="35" height="35" fill="#1b5e20"/>
+    <rect x="25" y="-50" width="35" height="35" fill="#1b5e20"/>
+    <!-- Нос и рот -->
+    <rect x="-25" y="-15" width="50" height="40" fill="#1b5e20"/>
+    <rect x="-40" y="25" width="20" height="40" fill="#1b5e20"/>
+    <rect x="20" y="25" width="20" height="40" fill="#1b5e20"/>
+  </g>
+
+  <!-- Верхний бейдж -->
+  <g transform="translate(50, 45)">
+    <rect x="0" y="0" width="310" height="34" rx="6" fill="#4caf50" fill-opacity="0.2" stroke="#8bc34a" stroke-width="1.5"/>
+    <text x="14" y="22" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="800" fill="#8bc34a" letter-spacing="1">
+      ⚡ JAVA &amp; BEDROCK EDITION • 2 В 1
+    </text>
+  </g>
+
+  <!-- Заголовок -->
+  <g transform="translate(50, 135)" filter="url(#shadow)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" fill="#ffffff" letter-spacing="-0.5">
+      MINECRAFT
+    </text>
+    <text x="0" y="48" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="900" fill="url(#mcGreen)" letter-spacing="-0.5">
+      DELUXE COLLECTION
+    </text>
+  </g>
+
+  <!-- Описание -->
+  <g transform="translate(50, 235)">
+    <text x="0" y="0" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="600" fill="#d7eed7">
+      Официальный лицензионный ключ Microsoft для ПК и Mac
+    </text>
+    <text x="0" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="500" fill="#9bc49b">
+      Включает доступ к официальным серверам, модам и кроссплею!
+    </text>
+  </g>
+
+  <!-- Теги -->
+  <g transform="translate(50, 320)">
+    <rect x="0" y="0" width="160" height="42" rx="8" fill="#1b361e" stroke="#8bc34a" stroke-width="1.5"/>
+    <text x="22" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="800" fill="#8bc34a">
+      🎮 JAVA + BEDROCK
+    </text>
+
+    <rect x="175" y="0" width="165" height="42" rx="8" fill="#1b361e" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <text x="195" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#ffffff">
+      ⚡ АВТОВЫДАЧА
+    </text>
+
+    <rect x="355" y="0" width="160" height="42" rx="8" fill="#1b361e" stroke="rgba(255,255,255,0.15)" stroke-width="1.5"/>
+    <text x="375" y="26" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="700" fill="#10b981">
+      🛡️ НАВСЕГДА
+    </text>
+  </g>
+
+  <rect x="0" y="444" width="800" height="6" fill="url(#mcGreen)"/>
+</svg>

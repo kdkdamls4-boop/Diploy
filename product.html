@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Товар — Diploy Games</title>
+  <link rel="stylesheet" href="css/style.css">
+  <script src="js/icons.js"></script>
+</head>
+<body>
+  <!-- Фоновый холст для анимированных частиц (осенние листья и огоньки) -->
+  <canvas id="particles-canvas"></canvas>
+
+  <!-- Верхняя промо-полоса распродажи (Autumn Sale Ribbon) -->
+  <div class="autumn-sale-topbar">
+    <span><span data-icon="pumpkin"></span> Осенняя распродажа &amp; Halloween Sale: скидки до -70% на игры и валюту! Промокод: <strong>HALLOWEEN</strong> (-25%)</span>
+  </div>
+
+  <!-- ======================================================================== -->
+  <!-- 1. ШАПКА САЙТА                                                           -->
+  <!-- ======================================================================== -->
+  <header class="site-header">
+    <div class="container header-container">
+      <a href="index.html" class="site-logo">
+        <span class="logo-badge">DIPLOY</span>
+        <span>GAMES</span>
+      </a>
+
+      <nav>
+        <ul class="nav-menu">
+          <li><a href="index.html" class="nav-link">Главная</a></li>
+          <li><a href="catalog.html" class="nav-link">Каталог</a></li>
+          <li><a href="profile.html" class="nav-link">Мои покупки</a></li>
+          <li><a href="admin.html" class="nav-link" title="Панель администратора (доступ защищен)">Управление <span data-icon="lock" style="font-size: 0.8em; opacity: 0.8;"></span></a></li>
+        </ul>
+      </nav>
+
+      <form class="header-search" id="header-search-form">
+        <span class="header-search-icon" data-icon="search"></span>
+        <input type="text" id="header-search-input" placeholder="Поиск игр...">
+      </form>
+
+      <div class="header-actions">
+        <a href="profile.html" class="user-balance-btn" title="Ваш баланс">
+          <span>Баланс:</span>
+          <span class="balance-value" id="header-user-balance">0 ₽</span>
+        </a>
+        <a href="cart.html" class="cart-btn" title="Корзина">
+          <span data-icon="cart"></span>
+          <span class="cart-badge" id="header-cart-badge" style="display: none;">0</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <!-- ======================================================================== -->
+  <!-- 2. СТРАНИЦА ТОВАРА (В СТИЛЕ STEAM)                                       -->
+  <!-- ======================================================================== -->
+  <main>
+    <div class="container" id="product-page-container">
+
+      <!-- Хлебные крошки -->
+      <div class="breadcrumbs">
+        <a href="index.html">Главная</a>
+        <span>/</span>
+        <a href="catalog.html">Каталог</a>
+        <span>/</span>
+        <span id="breadcrumb-title" style="color: #fff;">Загрузка товара...</span>
+      </div>
+
+      <!-- ВЕРХНИЙ БЛОК: ГАЛЕРЕЯ СКРИНШОТОВ + КРАТКАЯ ИНФОРМАЦИЯ -->
+      <div class="product-detail-hero">
+
+        <!-- Левая колонка: Галерея скриншотов -->
+        <div class="product-gallery">
+          <div class="main-screenshot-wrap">
+            <img id="main-screenshot" src="" alt="Скриншот игры" class="main-screenshot" onerror="handleImageError(this)">
+          </div>
+          <div class="thumbnails-row" id="thumbnails-row">
+            <!-- Миниатюры генерируются скриптом js/product.js -->
+          </div>
+        </div>
+
+        <!-- Правая колонка: Метаданные игры -->
+        <div class="product-info-panel">
+          <h1 id="product-title" class="product-info-title">Загрузка...</h1>
+
+          <div style="display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 8px;">
+            <span class="badge badge-platform" id="product-platform">Steam</span>
+            <span class="badge badge-discount" id="product-top-discount">-50%</span>
+            <span class="badge" style="background-color: #2b394e; color: #66c0f4;" id="product-category">Игры</span>
+          </div>
+
+          <p id="product-short-desc" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.6;">
+            Описание загружается...
+          </p>
+
+          <div style="margin-top: auto; display: flex; flex-direction: column; gap: 8px;">
+            <div class="meta-row">
+              <span class="meta-label">Разработчик:</span>
+              <span class="meta-value" id="product-developer">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Жанр:</span>
+              <span class="meta-value" id="product-genre">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Дата выхода:</span>
+              <span class="meta-value" id="product-release">—</span>
+            </div>
+            <div class="meta-row">
+              <span class="meta-label">Отзывы пользователей:</span>
+              <span class="meta-value" style="color: var(--accent-green);" id="product-rating">Очень положительные (4.9 / 5.0)</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- ==================================================================== -->
+      <!-- БЛОКИ ПОКУПКИ В СТИЛЕ STEAM (ИЗДАНИЯ И НАБОРЫ)                        -->
+      <!-- ==================================================================== -->
+      <section style="margin: 30px 0;">
+        <!-- ИНТЕРАКТИВНЫЙ КАЛЬКУЛЯТОР ДЛЯ ИГРОВОЙ ВАЛЮТЫ (GGSEL / PLAYEROK STYLE) -->
+        <div id="currency-calculator-wrapper" style="display: none; margin-bottom: 24px;"></div>
+
+        <h2 id="editions-section-title" style="font-size: 1.4rem; font-weight: 800; margin-bottom: 16px;">
+          <span data-icon="cart"></span> Варианты покупки и наборы
+        </h2>
+
+        <div class="steam-purchase-container" id="steam-editions-container">
+          <!-- Карточки изданий / бандлов генерируются скриптом js/product.js -->
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- ПОДРОБНОЕ ОПИСАНИЕ ИГРЫ                                              -->
+      <!-- ==================================================================== -->
+      <section style="background-color: var(--bg-card); border: 1px solid var(--border-color); border-radius: var(--radius-md); padding: 28px; margin-bottom: 30px;">
+        <h2 style="font-size: 1.3rem; font-weight: 800; margin-bottom: 14px;">Об игре</h2>
+        <div id="product-full-desc" style="color: var(--text-secondary); font-size: 0.95rem; line-height: 1.8;">
+          <!-- Полный текст описания -->
+        </div>
+      </section>
+
+      <!-- ==================================================================== -->
+      <!-- СИСТЕМНЫЕ ТРЕБОВАНИЯ                                                 -->
+      <!-- ==================================================================== -->
+      <section class="sys-req-box">
+        <h2 style="font-size: 1.25rem; font-weight: 800;">Системные требования</h2>
+        <div class="sys-req-grid">
+          <div class="req-col">
+            <h4>Минимальные</h4>
+            <ul id="req-min-list">
+              <!-- Заполняется js/product.js -->
+            </ul>
+          </div>
+          <div class="req-col">
+            <h4>Рекомендуемые</h4>
+            <ul id="req-rec-list">
+              <!-- Заполняется js/product.js -->
+            </ul>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- ======================================================================== -->
+  <!-- 3. ПОДВАЛ САЙТА                                                          -->
+  <!-- ======================================================================== -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-bottom">
+        <div>© 2026 Diploy Games. Учебный проект интернет-магазина.</div>
+        <div>Официальные лицензионные ключи с моментальной активацией</div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Скрипты -->
+  <script src="js/data.js"></script>
+  <script src="js/particles.js"></script>
+  <script src="js/app.js"></script>
+  <script src="js/product.js"></script>
+</body>
+</html>
